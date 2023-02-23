@@ -1,5 +1,7 @@
 // Adam Elkhanoufi
-// 898674229
+// 02/23/2023
+// Lexical Analyzer for a simple programming language
+// Java
 
 import java.util.Scanner;               // Scanner class for reading input
 import java.util.ArrayList;             // ArrayList data structure and its methods
