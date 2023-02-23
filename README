@@ -1,0 +1,7 @@
+C++ Lexical Analyzer compilation commands
+Compile Command:    $ g++ -std=c++11 Lexer.cpp -o lex
+Execute Command:    $ ./lex
+
+Java Lexical Analyzer compilation command
+Compile Command:    $ javac Lexer.java
+Execute Command:    $ java Lexer
