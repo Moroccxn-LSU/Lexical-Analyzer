@@ -1,5 +1,7 @@
 // Adam Elkhanoufi
-// 898674229
+// 02/23/2023
+// Lexical Analyzer for a simple programming language
+// C++
 
 #include <iostream>         // standard I/O functions
 #include <fstream>          // file I/O functions
