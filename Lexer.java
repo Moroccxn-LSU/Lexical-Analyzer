@@ -118,10 +118,23 @@ public class Lexer {
                         } else {  // Otherwise revert back to the original token 
                             token = "";
                             token += curr;
-                            tokens.add(tokenMap.get(token));
+                            // Check for unknown tokens before adding special character to tokens list
+                            if (tokenMap.containsKey(token)){
+                                tokens.add(tokenMap.get(token));
+                            }else{
+                                tokens.add("ERROR UNKONWN TOKEN");
+                                ERROR_FLAG = true;
+                                break;
+                            }
                         }
                     } else {  // Otherwise add the single non alphanumeric char to the token list
-                        tokens.add(tokenMap.get(String.valueOf(curr)));
+                        if (tokenMap.containsKey(token)) {
+                            tokens.add(tokenMap.get(token));
+                        }else{
+                            tokens.add("ERROR UNKONWN TOKEN");
+                            ERROR_FLAG = true;
+                            break;
+                        }
                     }
                     token = "";
                 }
@@ -135,7 +148,7 @@ public class Lexer {
                 i++;
             }
             //Check for the edge case where a single character identifier also happens to be the entire lexemes string (ex: i)
-            if (token != ""){
+            if (token != "" && !ERROR_FLAG){
                 tokens.add("IDENT");
                 token = "";
             }
@@ -158,6 +171,7 @@ public class Lexer {
                     // If the error flag is set, then break out of the loop
                     if (ERROR_FLAG) {break;}
                 }
+                if (ERROR_FLAG) {break;}
             }
             scanner.close();
         } catch (FileNotFoundException e) {
@@ -170,7 +184,6 @@ public class Lexer {
         for (String token : tokens) {
             System.out.print(token + "\n");
         }
-        System.out.println();
     }
     
     //Main method to run the program
