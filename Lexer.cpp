@@ -187,7 +187,7 @@ void Lexer::readFile(string fileName){
     
     if(file.is_open()){
         //Read each line of the file and store it into a string stream for the next while loop to use
-        while (getline(file, line)){
+        while (getline(file, line) && !ERROR_FLAG){
             stringstream ss(line);
             //Read in a chunk of lexemes from the stringstream by using getline() and a space as a delimiter
             //Check if syntax error has been caught, if so then break out the loops to stop the program
