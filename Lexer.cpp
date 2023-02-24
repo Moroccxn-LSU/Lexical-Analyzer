@@ -72,6 +72,7 @@ class Lexer{
 int main(){
     Lexer lexer;
     string fileName;
+    cout << "Enter the source code file name: ";
     cin >> fileName;
     lexer.readFile(fileName);
     lexer.printTokens();
