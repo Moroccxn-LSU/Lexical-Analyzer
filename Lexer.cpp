@@ -71,7 +71,9 @@ class Lexer{
 
 int main(){
     Lexer lexer;
-    lexer.readFile("testcase.txt");
+    string fileName;
+    cin >> fileName;
+    lexer.readFile(fileName);
     lexer.printTokens();
     return 0;
 }
@@ -141,10 +143,22 @@ void Lexer::tokenize(string lexemes) {
                     }else{  //Otherwise revert back to the original token 
                         token = "";
                         token += curr;
-                        tokens.push_back(tokenMap[token]);
+                        if (tokenMap.find(token) != tokenMap.end()){
+                            tokens.push_back(tokenMap[token]);
+                        }else{
+                            tokens.push_back("ERROR UNKNOWN TOKEN");
+                            ERROR_FLAG = true;
+                            break;
+                        }
                     }
                 }else{  //Otherwise add the single non alphanumeric char to the token vector
-                    tokens.push_back(tokenMap[token]);
+                    if (tokenMap.find(token) != tokenMap.end()){
+                        tokens.push_back(tokenMap[token]);
+                    }else{
+                        tokens.push_back("ERROR UNKNOWN TOKEN");
+                        ERROR_FLAG = true;
+                        break;
+                    }
                 }
                 token = "";
             }
@@ -158,7 +172,7 @@ void Lexer::tokenize(string lexemes) {
             i++;
         }
         //Check for the edge case where a single character identifier also happens to be the entire lexemes string (ex: i)
-        if (token != ""){
+        if (token != "" && !ERROR_FLAG){
             tokens.push_back("IDENT");
             token = "";
         }
